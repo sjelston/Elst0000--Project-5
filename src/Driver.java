@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -18,9 +19,8 @@ public class Driver extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// read in the Mesonet text file
-		//ArrayList<String> stations = read("Mesonet.txt");
+		ArrayList<String> stations = read("Mesonet.txt");
 		 
-		
 		Scene scene = null;              			 	// Scene contains all content
 		GridPane pane = null;  		 					// Positions components within scene
 		Scene scene2 = null;              			  	// Scene contains all content
@@ -46,9 +46,11 @@ public class Driver extends Application {
 	    TextArea dist4Txt = null;						// TextArea for dist4
 	    TextArea inputTxt = null;						// TextArea for input at the bottom
 	    Slider slide = null;							// Slider to determine distance
+	    ComboBox<MesoStation> dropDown = null;						// Drop down box
 	    Button showStation = null;						// Show Station Button
 	    Button hd = null;								// Calculate HD Button
 	    Button add = null;								// Add Station Button
+	    
 	    //Insets gridPadding = null;
 	    
 	    pane = new GridPane();   						// Create an empty pane
@@ -82,6 +84,13 @@ public class Driver extends Application {
 	    
 	    compare = new Label("Compare with: ");			// Creates Compare with: Label
 	    pane.add(compare, 0, 5);						// Adds the Label to the GridPane
+	    
+	    dropDown = new ComboBox<MesoStation>();			// Creates the ComboBox
+	    
+	    for (int i = 0; i < stations.size(); i++)	{
+	    	dropDown.getItems().add(new MesoStation(stations.get(i)));
+	    }
+	    pane.add(dropDown, 1, 5);
 	    
 	    // CREATE DROP DOWN BOX
 	    
@@ -150,24 +159,18 @@ public class Driver extends Application {
 		ArrayList<String> stationID = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String ID = "";
-		String strg = br.readLine();
+		//String strg = br.readLine();
+		String strg = "";
 
-		int count = 0;
 		while (!((strg = br.readLine()) == null))	{
-			for (int j = 1; j < 5; j++)	{
+			for (int j = 0; j < 4; j++)	{
 				ID += strg.charAt(j);
 			}
-			if (count < stationID.length)	{
-				stationID[count] = ID;
-			}
-			else	{
-				stationID = increaseArray(stationID);
-				stationID[count] = ID;
-			}
-			count++;
+			stationID.add(ID);
 			ID = "";
 		}
 		br.close();
+		return stationID;
 	}
 	
 	public static void main(String[] args) {
