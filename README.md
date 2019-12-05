@@ -28,6 +28,8 @@ Methods:
 																	match the specified distance.
 																	
 	public String[] increaseArray(String[] array)			Enlarges the Array by one
+	
+	public int compare(MesoStation o1, MesoStation o2)		Comparator for MesoStation objects
 																	
 **Driver.java**				*Extends Application* 
 
