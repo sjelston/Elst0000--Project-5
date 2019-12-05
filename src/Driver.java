@@ -22,10 +22,12 @@ import javafx.stage.Stage;
 
 public class Driver extends Application {
 	
+	private ArrayList<MesoStation> stations;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// read in the Mesonet text file
-		ArrayList<MesoStation> stations = read("Mesonet.txt");
+		stations = read("Mesonet.txt");
 				 
 		GridPane base = null;
 		GridPane pane1 = null;
@@ -77,14 +79,13 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(enterDist, 0);
 		GridPane.setRowIndex(enterDist, 0);
 				
-		slide = new Slider();							// Creates the Slider and sets options
+		slide = new Slider(1, 4, 1);					// Creates the Slider and sets options
 	    slide.setShowTickLabels(true);
 	    slide.setShowTickMarks(true);
 	    slide.setMajorTickUnit(1.0);
-	    slide.setMinorTickCount(4);
+	    slide.setMinorTickCount(0);
 	    slide.setBlockIncrement(1.0);
-	    slide.setMin(1.0);
-	    slide.setMax(4.0);
+	    slide.setSnapToTicks(true);
 	 // Setting the GridPane positioning
 	    GridPane.setColumnIndex(slide, 0);
 	    GridPane.setRowIndex(slide, 2);
@@ -117,11 +118,11 @@ public class Driver extends Application {
 	 */					
 		pane2 = new GridPane();
 				
-		showStation = new Button("Show Station");		// Initializing the Show Station button
+		showStation = new Button("Show Station");					// Initializing the Show Station button
 		showStation.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override 
 	        public void handle(ActionEvent e) {
-	            
+	            MesoStation current = dropDown.getValue();
 	        }
 	    });
 	// Setting the GridPane positioning

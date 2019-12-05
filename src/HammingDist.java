@@ -137,10 +137,22 @@ public class HammingDist
 			strg = sc.nextLine();
 		}
 
+		String ID = "";
+		String strg = "";
+
+		while (!((strg = br.readLine()) == null))	{
+			for (int j = 0; j < 4; j++)	{
+				ID += strg.charAt(j);
+			}
+			stationID.add(new MesoStation(ID));
+			ID = "";
+		
 		int i = 0;
 		while (sc.hasNextLine())
 		{
-			strg = sc.next();
+			for (int j = 0; j < 4; j++)	{
+				ID += strg.charAt(j);
+			}
 				
 			if (i < stationID.length)
 			{
