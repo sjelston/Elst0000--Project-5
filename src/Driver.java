@@ -121,20 +121,20 @@ public class Driver extends Application {
 		pane2 = new GridPane();
 
 		showStation = new Button("Show Station"); // Initializing the Show Station button
-		showStation.setOnAction(new EventHandler<ActionEvent>() {
-			MesoStation current = dropDown.getValue();
-
-			@Override
-			public void handle(ActionEvent e) {
-				MesoStation current = dropDown.getValue();
-				ArrayList<String> id = current.compareAllID((int) slide.getValue());
-				String out = "";
-				for (int i = 0; i < id.size(); i++) {
-					out = out + id.get(i) + "\n";
-				}
-				outputTxt.setText(out);
-			}
-		});
+//		showStation.setOnAction(new EventHandler<ActionEvent>() {
+//			MesoStation current = dropDown.getValue();
+//
+//			@Override
+//			public void handle(ActionEvent e) {
+//				MesoStation current = dropDown.getValue();
+//				ArrayList<String> id = current.compareAllID((int) slide.getValue());
+//				String out = "";
+//				for (int i = 0; i < id.size(); i++) {
+//					out = out + id.get(i) + "\n";
+//				}
+//				outputTxt.setText(out);
+//			}
+//		});
 		// Setting the GridPane positioning
 		GridPane.setColumnIndex(showStation, 0);
 		GridPane.setRowIndex(showStation, 0);
@@ -183,24 +183,24 @@ public class Driver extends Application {
 
 		hd = new Button("Calculate HD"); // Creates the Calculate HD Button
 
-		hd.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				String temp = dropDown.getValue().toString();
+//		hd.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent e) {
+//				String temp = dropDown.getValue().toString();
 
-				int zero = current.compareNum(0);
-				int one = current.compareNum(1);
-				int two = current.compareNum(2);
-				int three = current.compareNum(3);
-				int four = current.compareNum(4);
-
-				dist0Txt.setText(Integer.toString(zero));
-				dist1Txt.setText(Integer.toString(one));
-				dist2Txt.setText(Integer.toString(two));
-				dist3Txt.setText(Integer.toString(three));
-				dist4Txt.setText(Integer.toString(four));
-			}
-		});
+//				int zero = current.compareNum(0);
+//				int one = current.compareNum(1);
+//				int two = current.compareNum(2);
+//				int three = current.compareNum(3);
+//				int four = current.compareNum(4);
+//
+//				dist0Txt.setText(Integer.toString(zero));
+//				dist1Txt.setText(Integer.toString(one));
+//				dist2Txt.setText(Integer.toString(two));
+//				dist3Txt.setText(Integer.toString(three));
+//				dist4Txt.setText(Integer.toString(four));
+//			}
+//		});
 		// Setting the GridPane positioning
 		GridPane.setColumnIndex(hd, 0);
 		GridPane.setRowIndex(hd, 1);
@@ -308,12 +308,6 @@ public class Driver extends Application {
 		pane5 = new GridPane();
 
 		add = new Button("Add Station"); // Initializing the Add Station button
-
-		EventHandler<ActionEvent> addEvent = new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				slide.getValue();
-			}
-		};
 
 		add.setOnAction(new EventHandler<ActionEvent>() {
 			MesoStation current = new MesoStation(inputTxt.getText());

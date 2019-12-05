@@ -1,7 +1,9 @@
 # Elst0000--Project-5
 CS 2334 Project 5 Code
 
+**General Behavior**
 
+This project was designed to compute Hamming Distances for a given 4-character station ID as well as give some additional relevant information based on station IDs from the Mesonet.txt file.  This program was designed to do so with the use of multiple GUI components from JavaFX.
 
 ### Classes
 
@@ -25,7 +27,9 @@ Methods:
 	public ArrayList<String> compareAllID(int distance)		Compares ID to all others and returns those that 
 																	match the specified distance.
 																	
-**Driver.java**				*Extends Application*
+	public String[] increaseArray(String[] array)			Enlarges the Array by one
+																	
+**Driver.java**				*Extends Application* 
 
 Variables:
 	
