@@ -124,15 +124,16 @@ public class Driver extends Application {
 				
 		showStation = new Button("Show Station");					// Initializing the Show Station button
 		showStation.setOnAction(new EventHandler<ActionEvent>() {
-	        @Override 
+	        MesoStation current = dropDown.getValue();
+	        @Override
 	        public void handle(ActionEvent e) {
-	            MesoStation current = dropDown.getValue();
-	            ArrayList<String> id = current.compareAllID((int)slide.getValue());
-	            String out = "";
-	            for(int i = 0; i < id.size(); i++)	{
-	            	out = out + id.get(i) + "\n";
-	            }
-	            outputTxt.setText(out);
+	        	MesoStation current = dropDown.getValue();
+	        	ArrayList<String> id = current.compareAllID((int)slide.getValue());
+	        	String out = "";
+	        	for(int i = 0; i < id.size(); i++)	{
+	        		out = out + id.get(i) + "\n";
+	        	}
+	        	outputTxt.setText(out);
 	        }
 	    });
 	// Setting the GridPane positioning
@@ -183,17 +184,12 @@ public class Driver extends Application {
 		GridPane.setRowIndex(dropDown, 0);
 				
 		hd = new Button("Calculate HD");				// Creates the Calculate HD Button
+		
 		hd.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override 
 	        public void handle(ActionEvent e) {
 	            String temp = dropDown.getValue().toString();
-	            MesoStation current = null;
-				try {
-					current = new MesoStation(temp);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+	            
 	            int zero = current.compareNum(0);
 	            int one = current.compareNum(1);
 	            int two = current.compareNum(2);
@@ -318,13 +314,21 @@ public class Driver extends Application {
 		pane5 = new GridPane();
 		
 		add = new Button("Add Station");				// Initializing the Add Station button
+		
+		EventHandler<ActionEvent> addEvent = new EventHandler<ActionEvent>()	{
+			public void handle(ActionEvent e)	{
+				slide.getValue();
+			}
+		};
+		
+		
 		add.setOnAction(new EventHandler<ActionEvent>() {
-	        @Override 
+			MesoStation current = dropDown.getValue();
+			@Override 
 	        public void handle(ActionEvent e) {
-	            MesoStation current = dropDown.getValue();
-	            if (!(dropDown.getItems().contains(current)))	{
+	           if (!(dropDown.getItems().contains(current)))	{
 	            	dropDown.getItems().add(current);
-	            	dropDown.getItems().sort(MesoStation.compare());
+	            	dropDown.getItems().sort(current);
 	            }
 	        }
 	    });
