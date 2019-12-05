@@ -53,12 +53,12 @@ public class Driver extends Application {
 	    Slider slide = null;							// Slider to determine distance
 			
 		TextArea slideTxt = null; 						// TextArea for Slider output
-		TextArea outputTxt = null;						// TextArea for Show Station output
-		TextArea dist0Txt = null;						// TextArea for dist0
-		TextArea dist1Txt = null;						// TextArea for dist1
-	    TextArea dist2Txt = null;						// TextArea for dist2
-	    TextArea dist3Txt = null;						// TextArea for dist3
-	    TextArea dist4Txt = null;						// TextArea for dist4
+		TextArea outputTxt = new TextArea();						// TextArea for Show Station output
+		TextArea dist0Txt = new TextArea();						// TextArea for dist0
+		TextArea dist1Txt = new TextArea();						// TextArea for dist1
+	    TextArea dist2Txt = new TextArea();						// TextArea for dist2
+	    TextArea dist3Txt = new TextArea();						// TextArea for dist3
+	    TextArea dist4Txt = new TextArea();						// TextArea for dist4
 	    TextArea inputTxt = null;						// TextArea for input for Add Station
 			
 	    Button showStation = null;						// Show Station Button
@@ -128,14 +128,17 @@ public class Driver extends Application {
 	        public void handle(ActionEvent e) {
 	            MesoStation current = dropDown.getValue();
 	            ArrayList<String> id = current.compareAllID((int)slide.getValue());
-	            
+	            String out = "";
+	            for(int i = 0; i < id.size(); i++)	{
+	            	out = out + id.get(i) + "\n";
+	            }
+	            outputTxt.setText(out);
 	        }
 	    });
 	// Setting the GridPane positioning
 		GridPane.setColumnIndex(showStation, 0);
 	    GridPane.setRowIndex(showStation, 0);
 				
-		outputTxt = new TextArea();						// Initializes the output text area for showStation
 		outputTxt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size components
 		outputTxt.setMinHeight(260);
@@ -190,6 +193,11 @@ public class Driver extends Application {
 	            int three = current.compareNum(3);
 	            int four = current.compareNum(4);
 	            
+	            dist0Txt.setText(Integer.toString(zero));
+	            dist1Txt.setText(Integer.toString(one));
+	            dist2Txt.setText(Integer.toString(two));
+	            dist3Txt.setText(Integer.toString(three));
+	            dist4Txt.setText(Integer.toString(four));
 	        }
 	    });
 	// Setting the GridPane positioning
@@ -235,7 +243,6 @@ public class Driver extends Application {
 		GridPane.setRowIndex(dist4, 4);
 			    
 	// Creating text areas and setting editting
-		dist0Txt = new TextArea();						// TextArea for dist0
 		dist0Txt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size
 		dist0Txt.setMaxHeight(1);
@@ -245,7 +252,6 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(dist0Txt, 1);
 		GridPane.setRowIndex(dist0Txt, 0);
 	    
-	    dist1Txt = new TextArea();						// TextArea for dist1
 	    dist1Txt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size
 	    dist1Txt.setMaxHeight(1);
@@ -255,7 +261,6 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(dist1Txt, 1);
 		GridPane.setRowIndex(dist1Txt, 1);
 			   
-		dist2Txt = new TextArea();						// TextArea for dist2
 	    dist2Txt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size
 	    dist2Txt.setMaxHeight(1);
@@ -265,7 +270,6 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(dist2Txt, 1);
 		GridPane.setRowIndex(dist2Txt, 2);
 				
-	    dist3Txt = new TextArea();						// TextArea for dist3
 	    dist3Txt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size
 	    dist3Txt.setMaxHeight(1);
@@ -275,7 +279,6 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(dist3Txt, 1);
 		GridPane.setRowIndex(dist3Txt, 3);
 		
-	    dist4Txt = new TextArea();						// TextArea for dist4
 	    dist4Txt.setEditable(false); 					// Disables user-editting of the TextArea
 	// Setting size
 	    dist4Txt.setMaxHeight(1);
@@ -312,8 +315,10 @@ public class Driver extends Application {
 	        @Override 
 	        public void handle(ActionEvent e) {
 	            MesoStation current = dropDown.getValue();
-	            ArrayList<String> id = current.compareAllID((int)slide.getValue());
-	            
+	            if (!(dropDown.getItems().contains(current)))	{
+	            	dropDown.getItems().add(current);
+	            	dropDown.getItems().sort(comparator);
+	            }
 	        }
 	    });
 	// Setting the GridPane positioning
