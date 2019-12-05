@@ -24,7 +24,11 @@ public class Driver extends Application {
 		// read in the Mesonet text file
 				//ArrayList<String> stations = read("Mesonet.txt");
 				 
-				GridPane pane1 = new GridPane();
+				GridPane base = null;
+				GridPane pane1 = null;
+				GridPane pane2 = null;
+				FlowPane norm = null;							// Pane to hold all requirements for the project
+																// Pane to hold extra project
 				
 				Label enterDist = null;     					// Label for "Enter Hamming Dist: "
 				
@@ -32,6 +36,11 @@ public class Driver extends Application {
 			
 				TextArea slideTxt = null; 						// TextArea for Slider output
 				
+			/**
+			 * Creating the first pane
+			 * This will contain enterDist, the slider, and the text output for the slider
+			 */
+				pane1 = new GridPane();
 				
 				enterDist = new Label("Enter Hamming Dist: ");
 			 // Setting the GridPane positioning
@@ -49,7 +58,7 @@ public class Driver extends Application {
 			    GridPane.setColumnSpan(slideTxt, 3);
 				GridPane.setRowIndex(slideTxt, 0);
 			    
-			    slide = new Slider();							// Creates the Slider
+			    slide = new Slider();							// Creates the Slider and sets options
 			    slide.setShowTickLabels(true);
 			    slide.setShowTickMarks(true);
 			    slide.setMajorTickUnit(1.0);
@@ -71,10 +80,18 @@ public class Driver extends Application {
 				pane1.getChildren().add(slideTxt);
 				
 				
+			/**
+			 * Creating the second pane
+			 * This will contain enterDist, the slider, and the text output for the slider
+			 */					
+				pane2 = new GridPane();
 				
 				
 				
 				
+				
+				base = new GridPane();
+				base.getChildren().add(norm);
 				
 				Scene sc = new Scene(pane1, 750, 800);
 				
