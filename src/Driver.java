@@ -186,7 +186,14 @@ public class Driver extends Application {
 		hd.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override 
 	        public void handle(ActionEvent e) {
-	            MesoStation current = dropDown.getValue();
+	            String temp = dropDown.getValue().toString();
+	            MesoStation current = null;
+				try {
+					current = new MesoStation(temp);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	            int zero = current.compareNum(0);
 	            int one = current.compareNum(1);
 	            int two = current.compareNum(2);
@@ -317,7 +324,7 @@ public class Driver extends Application {
 	            MesoStation current = dropDown.getValue();
 	            if (!(dropDown.getItems().contains(current)))	{
 	            	dropDown.getItems().add(current);
-	            	dropDown.getItems().sort(comparator);
+	            	dropDown.getItems().sort(MesoStation.compare());
 	            }
 	        }
 	    });

@@ -2,8 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class MesoStation 
+public class MesoStation implements Comparator<MesoStation> 
 {
 	private String stID;
 	private ArrayList<String> stationID;
@@ -48,7 +49,6 @@ public class MesoStation
 	{
 		ArrayList<String> id = new ArrayList<String>();
 		int count = 0;
-		int stations = 0;
 		for(int i = 0; i < stationID.size(); i++)
 		{
 			String temp = stationID.get(i);
@@ -62,7 +62,6 @@ public class MesoStation
 			}
 			if (count == distance)
 			{
-				stations += 1;
 				id.add(temp);
 			}
 		}
@@ -108,5 +107,10 @@ public class MesoStation
 		}
 		br.close();
 		return stationID;
+	}
+
+	@Override
+	public int compare(MesoStation o1, MesoStation o2) {
+		return (o1.getStID().compareTo(o2.getStID()));
 	}
 }
