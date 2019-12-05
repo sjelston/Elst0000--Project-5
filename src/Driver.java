@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -23,7 +24,7 @@ public class Driver extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// read in the Mesonet text file
-		//ArrayList<String> stations = read("Mesonet.txt");
+		ArrayList<MesoStation> stations = read("Mesonet.txt");
 				 
 		GridPane base = null;
 		GridPane pane1 = null;
@@ -115,6 +116,12 @@ public class Driver extends Application {
 		pane2 = new GridPane();
 				
 		showStation = new Button("Show Station");		// Initializing the Show Station button
+		showStation.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override 
+	        public void handle(ActionEvent e) {
+	            
+	        }
+	    });
 	// Setting the GridPane positioning
 		GridPane.setColumnIndex(showStation, 0);
 	    GridPane.setRowIndex(showStation, 0);
@@ -151,6 +158,11 @@ public class Driver extends Application {
 		GridPane.setRowIndex(compare, 0);
 				
 		dropDown = new ComboBox<MesoStation>();			// Creating the drop down box
+	// Filling the drop down box
+		for(int i = 0; i < stations.size(); i++)	{
+			MesoStation m = stations.get(i);
+			dropDown.getItems().add(m);
+		}
 		dropDown.setMinWidth(80);
 		dropDown.setMaxWidth(90);
 	// Setting the GridPane positioning
@@ -328,9 +340,9 @@ public class Driver extends Application {
 	 * @throws IOException 
 	 * @throws Exception
 	 */
-	public ArrayList<String> read(String fileName) throws IOException
+	public ArrayList<MesoStation> read(String fileName) throws IOException
 	{
-		ArrayList<String> stationID = new ArrayList<String>();
+		ArrayList<MesoStation> stationID = new ArrayList<MesoStation>();
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String ID = "";
 		//String strg = br.readLine();
@@ -340,7 +352,7 @@ public class Driver extends Application {
 			for (int j = 0; j < 4; j++)	{
 				ID += strg.charAt(j);
 			}
-			stationID.add(ID);
+			stationID.add(new MesoStation(ID));
 			ID = "";
 		}
 		br.close();
