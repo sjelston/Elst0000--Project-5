@@ -3,16 +3,20 @@ import javafx.scene.layout.GridPane;
 
 public class Extra {
 	
-	public 
-	public void extra()	{
+	public Extra()	{
+		
+	}
+	
+	public void setPane()	{
 	GridPane g = new GridPane();
 	
-	Button A = new Button("A");
-	Button B = new Button("B");
-	Button C = new Button("C");
-	Button D = new Button("D");
+	Button A = new Button("Which");
+	A.setOnAction(ActionEvent);
+	Button B = new Button("Will");
+	Button C = new Button("You");
+	Button D = new Button("Choose?");
 	
-	B.set();
+	
 	
 	}
 	
