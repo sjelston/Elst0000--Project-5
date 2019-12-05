@@ -1,7 +1,9 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HammingDist
@@ -171,22 +173,22 @@ public class HammingDist
 		return newArray;
 	}
 	
-	/**
-     * toString override. Gives all information about the Hamming Distance.
-     * 
-     * @return All information about The Hamming Distance in the format:
-     * The Hamming Distance between Norman and <one> is <distOne> and for <two>: <distTwo>. 
-     * For <one>, number of stations with Hamming Distance <distOne> is <equalDistOne>, and 
-     * for <two>, number of stations with Hamming Distance <distTwo> is <equalDistTwo>.
-     */
-    @Override
-	public String toString()
-	{
-		return String.format
-				("The Hamming Distance between Norman and %s is %d and for %s: %d.\n" + 
-				"For %s, number of stations with Hamming Distance %d is %d, and\n" + 
-				"for %s, number of stations with Hamming Distance %d is %d.", 
-				one, distOne, two, distTwo, one, distOne, equalDistOne,
-				two, distTwo, equalDistTwo);
-	}
+//	/**
+//     * toString override. Gives all information about the Hamming Distance.
+//     * 
+//     * @return All information about The Hamming Distance in the format:
+//     * The Hamming Distance between Norman and <one> is <distOne> and for <two>: <distTwo>. 
+//     * For <one>, number of stations with Hamming Distance <distOne> is <equalDistOne>, and 
+//     * for <two>, number of stations with Hamming Distance <distTwo> is <equalDistTwo>.
+//     */
+//    @Override
+//	public String toString()
+//	{
+//		return String.format
+//				("The Hamming Distance between Norman and %s is %d and for %s: %d.\n" + 
+//				"For %s, number of stations with Hamming Distance %d is %d, and\n" + 
+//				"for %s, number of stations with Hamming Distance %d is %d.", 
+//				one, distOne, two, distTwo, one, distOne, equalDistOne,
+//				two, distTwo, equalDistTwo);
+//	}
 }

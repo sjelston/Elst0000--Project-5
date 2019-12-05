@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -76,18 +77,7 @@ public class Driver extends Application {
 		GridPane.setColumnIndex(enterDist, 0);
 		GridPane.setRowIndex(enterDist, 0);
 				
-		slideTxt = new TextArea();						// Creates the text area for slide output
-		slideTxt.setEditable(false); 					// Disables user-editting of the TextArea
-	// Setting size fields for the text area
-		slideTxt.setMaxHeight(1);
-		slideTxt.setMaxWidth(100);
-	    slideTxt.setMinWidth(30);
-	// Setting the GridPane positioning
-		GridPane.setColumnIndex(slideTxt, 1);
-		GridPane.setColumnSpan(slideTxt, 3);
-		GridPane.setRowIndex(slideTxt, 0);
-			    
-	    slide = new Slider();							// Creates the Slider and sets options
+		slide = new Slider();							// Creates the Slider and sets options
 	    slide.setShowTickLabels(true);
 	    slide.setShowTickMarks(true);
 	    slide.setMajorTickUnit(1.0);
@@ -99,6 +89,18 @@ public class Driver extends Application {
 	    GridPane.setColumnIndex(slide, 0);
 	    GridPane.setRowIndex(slide, 2);
 	    GridPane.setColumnSpan(slide, 10);
+	    
+	    slideTxt = new TextArea();						// Creates the text area for slide output
+		slideTxt.textProperty().bind(slide.valueProperty().asString());
+		slideTxt.setEditable(false); 					// Disables user-editting of the TextArea
+	// Setting size fields for the text area
+		slideTxt.setMaxHeight(1);
+		slideTxt.setMaxWidth(100);
+	    slideTxt.setMinWidth(30);
+	// Setting the GridPane positioning
+		GridPane.setColumnIndex(slideTxt, 1);
+		GridPane.setColumnSpan(slideTxt, 3);
+		GridPane.setRowIndex(slideTxt, 0);
 				
 	// Adding nodes to pane 1
 	    pane1.setVgap(10);								// Set vertical gap
@@ -345,7 +347,6 @@ public class Driver extends Application {
 		ArrayList<MesoStation> stationID = new ArrayList<MesoStation>();
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String ID = "";
-		//String strg = br.readLine();
 		String strg = "";
 
 		while (!((strg = br.readLine()) == null))	{
