@@ -91,12 +91,12 @@ public class HammingDist
 	/**
 	 * This method compares a string input to all of the station
 	 * IDs stored in the array stationID and determines how many
-	 * station IDs are the same Hamming Distance from id that 
-	 * "NRMN" is.
-	 * @param distance The Hamming Distance between id and "NRMN"
+	 * station IDs share the same Hamming Distance as the input
+	 * 
+	 * @param distance The desired Hamming Distance
 	 * @param id The string to be compared to stationID
 	 * @return The number of station IDs that share the same Hamming
-	 * Distance with id that "NRMN" does.
+	 * Distance with that number
 	 */
 	public int compareAllID(int distance, String id)
 	{
@@ -131,22 +131,9 @@ public class HammingDist
 	public void read(String fileName) throws Exception
 	{
 		Scanner sc = new Scanner(new File (fileName));
-		String strg = sc.nextLine();
-		for(int j = 0; j < 5; j++)
-		{
-			strg = sc.nextLine();
-		}
-
 		String ID = "";
-		String strg = "";
+		String strg = sc.nextLine();
 
-		while (!((strg = br.readLine()) == null))	{
-			for (int j = 0; j < 4; j++)	{
-				ID += strg.charAt(j);
-			}
-			stationID.add(new MesoStation(ID));
-			ID = "";
-		
 		int i = 0;
 		while (sc.hasNextLine())
 		{
@@ -156,12 +143,12 @@ public class HammingDist
 				
 			if (i < stationID.length)
 			{
-				stationID[i] = strg;
+				stationID[i] = ID;
 			}
 			else
 			{
 				stationID = increaseArray(stationID);
-				stationID[i] = strg;
+				stationID[i] = ID;
 			}
 			i++;
 			strg = sc.nextLine();

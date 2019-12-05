@@ -24,6 +24,10 @@ public class Driver extends Application {
 	
 	private ArrayList<MesoStation> stations;
 	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// read in the Mesonet text file
@@ -123,6 +127,8 @@ public class Driver extends Application {
 	        @Override 
 	        public void handle(ActionEvent e) {
 	            MesoStation current = dropDown.getValue();
+	            ArrayList<String> id = current.compareAllID((int)slide.getValue());
+	            
 	        }
 	    });
 	// Setting the GridPane positioning
@@ -174,6 +180,18 @@ public class Driver extends Application {
 		GridPane.setRowIndex(dropDown, 0);
 				
 		hd = new Button("Calculate HD");				// Creates the Calculate HD Button
+		hd.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override 
+	        public void handle(ActionEvent e) {
+	            MesoStation current = dropDown.getValue();
+	            int zero = current.compareNum(0);
+	            int one = current.compareNum(1);
+	            int two = current.compareNum(2);
+	            int three = current.compareNum(3);
+	            int four = current.compareNum(4);
+	            
+	        }
+	    });
 	// Setting the GridPane positioning
 		GridPane.setColumnIndex(hd, 0);	
 		GridPane.setRowIndex(hd, 1);
@@ -290,6 +308,14 @@ public class Driver extends Application {
 		pane5 = new GridPane();
 		
 		add = new Button("Add Station");				// Initializing the Add Station button
+		add.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override 
+	        public void handle(ActionEvent e) {
+	            MesoStation current = dropDown.getValue();
+	            ArrayList<String> id = current.compareAllID((int)slide.getValue());
+	            
+	        }
+	    });
 	// Setting the GridPane positioning
 		GridPane.setColumnIndex(add, 0);
 	    GridPane.setRowIndex(add, 0);
@@ -334,6 +360,7 @@ public class Driver extends Application {
 		primaryStage.show();							// Displays the window
 	}
 	
+	
 	/**
 	 * This method reads from a file and sorts through to find the 
 	 * station IDs in the document.  It then stores each station 
@@ -359,10 +386,6 @@ public class Driver extends Application {
 		}
 		br.close();
 		return stationID;
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
 	}
 
 }
